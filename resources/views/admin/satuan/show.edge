@@ -1,0 +1,32 @@
+@layout('layouts.app')
+@section('title')
+<title>
+    INVENTORY - Data Satuan Barang
+</title>
+@endsection
+@section('content_title')
+<h1 class="h3 mb-4 text-gray-800">
+    Tambah Satuan Barang
+</h1>
+@endsection
+@section('content')
+    <div class="col-lg">
+    	<div class="card">
+    		<div class="card-header">
+    			<a href="{{ route('satuan.index') }}" class="btn btn-danger btn-sm">
+    				<i class="fas fa-window-close fa-fw"></i> BACK TO LIST
+    			</a>
+    		</div>
+    		<div class="card-body">
+    			<div class="form-group">
+    				<label for="nama_satuan">Nama Satuan</label>
+    				<input type="" name="nama_satuan" value="{{ satuan.nama_satuan }}" readonly="" id="nama_satuan" class="form-control">
+    			</div>
+    			<div class="form-group">
+    				<label for="kode_satuan">Kode Satuan</label>
+    				<input type="" name="kode_satuan" value="{{ satuan.kode_satuan }}" readonly="" id="kode_satuan" class="form-control">
+    			</div>
+    		</div>
+    	</div>
+    </div>
+@endsection

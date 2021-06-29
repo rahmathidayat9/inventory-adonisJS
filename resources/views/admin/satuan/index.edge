@@ -1,0 +1,69 @@
+@layout('layouts.app')
+@section('title')
+<title>
+    INVENTORY - Data Satuan Barang
+</title>
+@endsection
+@section('css')
+<!-- Custom styles for this page -->
+{{ style('templates/backend/sb-admin-2/vendor/datatables/dataTables.bootstrap4.min.css') }}
+@endsection
+@section('content_title')
+<h1 class="h3 mb-4 text-gray-800">
+    Data Satuan Barang
+</h1>
+@endsection
+@section('content')
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a href="{{ route('satuan.create') }}" class="btn btn-primary btn-sm">
+        	<i class="fas fa-plus fa-fw"></i> TAMBAH DATA
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Satuan</th>
+                        <th>Kode Satuan</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>	
+                    <script> var no = 1 </script>
+                    @each(row in satuan)
+                    <tr>
+                        <td><script> document.write(no++) </script></td>
+                        <td>{{ row.nama_satuan }}</td>
+                        <td>{{ row.kode_satuan }}</td>
+                        <td>
+                        	<div class="row mx-auto">
+                             <a href="{{ route('satuan.edit', { id: row.id }) }}" class="btb btn-primary btn-sm">
+                                 <i class="fas fa-edit fa-fw"></i>
+                             </a>
+                             <a href="{{ route('satuan.show', { id: row.id }) }}" class="ml-2 btn btn-success btn-sm">
+                                 <i class="fas fa-info fa-fw"></i>
+                             </a>
+                             <form method="POST" action="{{ route('satuan.destroy', { id: row.id }) }}?_method=DELETE">
+                                {{ csrfField() }}
+                                 <button type="submit" class="btn btn-danger btn-sm ml-2" onclick="return confirm('Yakin hapus?')">
+                                     <i class="fas fa-trash fa-fw"></i>
+                                 </button>
+                             </form>      
+                            </div>
+                        </td>
+                    </tr>
+                    @endeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@endsection
+@section('js')
+{{ script('templates/backend/sb-admin-2/vendor/datatables/jquery.dataTables.min.js') }}
+{{ script('templates/backend/sb-admin-2/vendor/datatables/dataTables.bootstrap4.min.js') }}
+{{ script('templates/backend/sb-admin-2/js/demo/datatables-demo.js') }}
+@endsection

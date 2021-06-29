@@ -1,0 +1,25 @@
+@layout('layouts.app')
+@section('title')
+<title>
+	INVENTORY - Dashboard
+</title>
+@endsection
+@section('content_title')
+<h1 class="h3 mb-4 text-gray-800">
+	Dashboard
+</h1>
+@endsection
+@section('content')
+<!-- Content Row -->
+<div class="row">
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">INVENTORY APP</h6>
+    </div>
+    <div class="card-body">
+        <p>Selamat datang di INVENTORY APP {{ auth.user.username }}! .</p>
+    </div>
+</div>
+
+</div>
+@endsection

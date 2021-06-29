@@ -1,0 +1,64 @@
+@layout('layouts.app')
+@section('title')
+<title>
+    INVENTORY - Data Barang Keluar
+</title>
+@endsection
+@section('css')
+<!-- Custom styles for this page -->
+{{ style('templates/backend/sb-admin-2/vendor/datatables/dataTables.bootstrap4.min.css') }}
+@endsection
+@section('content_title')
+<h1 class="h3 mb-4 text-gray-800">
+    Data Barang Keluar
+</h1>
+@endsection
+@section('content')
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a href="{{ route('barang-masuk.index') }}" class="btn btn-primary btn-sm">
+        	<i class="fas fa-plus fa-fw"></i> TAMBAH DATA
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Barang</th>
+                        <th>Kode Barang</th>
+                        <th>Jumlah</th>
+                        <th>Satuan</th>
+                        <th>Kode Transaksi</th>
+                        <th>Invoice</th>
+                    </tr>
+                </thead>
+                <tbody>	
+                    <script> var no = 1 </script>
+                    @each(row in barang_keluar)
+                    <tr>
+                        <td><script> document.write(no++) </script></td>
+                        <td>{{ row.nama_barang }}</td>
+                        <td>{{ row.kode_barang }}</td>
+                        <td>{{ row.jumlah }}</td>
+                        <td>{{ row.satuan }}</td>
+                        <td>{{ row.kode_transaksi }}</td>
+                        <td>
+                            <a href="" class="btn btn-danger btn-sm">
+                                <i class="fas fa-print fa-fw"></i> CETAK
+                            </a>
+                        </td>
+                    </tr>
+                    @endeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@endsection
+@section('js')
+{{ script('templates/backend/sb-admin-2/vendor/datatables/jquery.dataTables.min.js') }}
+{{ script('templates/backend/sb-admin-2/vendor/datatables/dataTables.bootstrap4.min.js') }}
+{{ script('templates/backend/sb-admin-2/js/demo/datatables-demo.js') }}
+@endsection

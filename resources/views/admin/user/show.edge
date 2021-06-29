@@ -1,0 +1,36 @@
+@layout('layouts.app')
+@section('title')
+<title>
+    INVENTORY - Data User
+</title>
+@endsection
+@section('content_title')
+<h1 class="h3 mb-4 text-gray-800">
+    Show User
+</h1>
+@endsection
+@section('content')
+    <div class="col-lg">
+    	<div class="card">
+    		<div class="card-header">
+    			<a href="{{ route('user.index') }}" class="btn btn-danger btn-sm">
+    				<i class="fas fa-window-close fa-fw"></i> BACT TO LIST
+    			</a>
+    		</div>
+    		<div class="card-body">
+    			<div class="form-group">
+    				<label for="username">Username</label>
+    				<input type="" name="username" value="{{ user.username }}" disabled="" id="username" class="form-control">
+    			</div>
+    			<div class="form-group">
+    				<label for="email">Email</label>
+    				<input type="email" name="email" value="{{ user.email }}" disabled="" id="email" class="form-control">
+    			</div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <input type="" name="role" value="{{ user.role }}" disabled="" id="role" class="form-control">
+                </div>
+    		</div>
+    	</div>
+    </div>
+@endsection

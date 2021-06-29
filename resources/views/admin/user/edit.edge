@@ -1,0 +1,54 @@
+@layout('layouts.app')
+@section('title')
+<title>
+    INVENTORY - Data User
+</title>
+@endsection
+@section('content_title')
+    <h1 class="h3 mb-4 text-gray-800">
+        Edit User
+    </h1>
+@endsection
+@section('content')
+    <div class="col-lg">
+        <div class="card">
+            <div class="card-header">
+                <a href="{{ route('user.index') }}" class="btn btn-danger btn-sm">
+                    <i class="fas fa-window-close fa-fw"></i> BATALKAN
+                </a>
+            </div>
+            <div class="card-body">
+            <form method="POST" action="{{ route('user.update', { id: user.id }) }}?_method=PATCH">
+                {{ csrfField() }}
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="" name="username" value="{{ user.username }}" required="" id="username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" value="{{ user.email }}" required="" id="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="hidden" readonly="" name="old_password" value="{{ user.password }}" class="form-control">
+                    <input type="password" name="password" id="password" class="form-control">
+                    <small class="text-help">Kosongkan Kolom Password Jika Tidak Ingin Merubah Password</small>
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select name="role" required="" id="role" class="form-control">
+                        <option disabled="" selected="">- PILIH ROLE -</option>
+                        <option value="admin">ADMIN</option>
+                        <option value="user">USER</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-save fa-fw"></i> UPDATE
+                    </button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+@endsection

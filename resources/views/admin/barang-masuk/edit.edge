@@ -1,0 +1,88 @@
+@layout('layouts.app')
+@section('title')
+<title>
+    INVENTORY - Data Barang Masuk
+</title>
+@endsection
+@section('content_title')
+<h1 class="h3 mb-4 text-gray-800">
+    Edit Barang Masuk
+</h1>
+@endsection
+@section('content')
+    <div class="col-lg">
+    	<div class="card">
+    		<div class="card-header">
+    			<a href="{{ route('barang-masuk.index') }}" class="btn btn-danger btn-sm">
+    				<i class="fas fa-window-close fa-fw"></i> BATALKAN
+    			</a>
+    		</div>
+    		<div class="card-body">
+            <form method="POST" action="{{ route('barang-masuk.update', { id: barang_masuk.id }) }}?_method=PATCH">
+    		  {{ csrfField() }}
+              <div class="row">
+                  <div class="col-lg-4 mx-auto">
+                      <div class="form-group">
+                        <label for="nama_barang">Nama Barang:</label>
+                        <input type="" name="nama_barang" value="{{ barang_masuk.nama_barang }}" required=""  id="nama_barang" class="form-control">
+                        {{ elIf('<span class="text-danger">$self</span>', getErrorFor('nama_barang'), hasErrorFor('nama_barang')) }}
+                      </div>
+                      <div class="form-group">
+                        <label for="kode_barang">Kode Barang:</label>
+                        <input type="" name="kode_barang" required="" value="{{ barang_masuk.kode_barang }}" disabled=""  id="kode_barang" class="form-control">
+                        {{ elIf('<span class="text-danger">$self</span>', getErrorFor('kode_barang'), hasErrorFor('kode_barang')) }}
+                      </div>
+                      <div class="form-group">
+                        <label for="satuan">Satuan:</label>
+                        <select name="satuan" required="" id="satuan" class="form-control">
+                            <option value="" disabled="">- PILIH SATUAN BARANG -</option>
+                            @each(row in satuan)
+                              @if(barang_masuk.satuan == row.nama_satuan)
+                                <option selected="" value="{{ row.nama_satuan }}">{{ row.nama_satuan }}</option>
+                              @else
+                                <option value="{{ row.nama_satuan }}">{{ row.nama_satuan }}</option>
+                              @endif
+                            @endeach
+                        </select>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="form-group">
+                    <label for="kode_transaksi">Kode Transaksi:</label>
+                    <input type="" name="kode_transaksi" required="" value="{{ barang_masuk.kode_transaksi }}" disabled=""  id="kode_transaksi" class="form-control">
+                    {{ elIf('<span class="text-danger">$self</span>', getErrorFor('kode_transaksi'), hasErrorFor('kode_transaksi')) }}
+                  </div>
+                  <div class="col-lg-2">
+                      <div class="form-group">
+                        <label for="">Lokasi:</label>
+                        <input type="" name="lokasi" value="{{ barang_masuk.lokasi }}" required="" class="form-control">
+                        {{ elIf('<span class="text-danger">$self</span>', getErrorFor('lokasi'), hasErrorFor('lokasi')) }}
+                      </div>
+                  </div>
+                  <div class="col-lg-3">
+                      <div class="form-group">
+                        <label for="">Tanggal:</label>
+                        <input type="date" name="tanggal" value="{{ barang_masuk.tanggal }}" required="" class="form-control">
+                      </div>
+                  </div>
+                  <div class="col-lg-2">
+                      <div class="form-group">
+                        <label for="">Jumlah:</label>
+                        <input type="number" name="jumlah" value="{{ barang_masuk.jumlah }}" required="" class="form-control">
+                        {{ elIf('<span class="text-danger">$self</span>', getErrorFor('jumlah'), hasErrorFor('jumlah')) }}
+                      </div>
+                  </div>
+                  <div class="col-lg-2">
+                      <div style="margin-top: 21%;" class="form-group">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save fa-fw"></i> UPDATE
+                        </button>
+                      </div>
+                  </div>
+              </div>
+    		</form>
+            </div>
+    	</div>
+    </div>
+@endsection
