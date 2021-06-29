@@ -28,6 +28,7 @@
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/validator": "^5.1.0",
     "mysql": "^2.18.1",
+    "pg": "^8.6.0",
     "randomstring": "^1.2.1"
   },
   "devDependencies": {},
